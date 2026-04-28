@@ -1,0 +1,50 @@
+# ════════════════════════════════════════════════════════════
+# .gitignore — jamás commitear nada sensible
+# ════════════════════════════════════════════════════════════
+
+# ─── Secrets (NUNCA committar) ─────────────────────────────
+*.pem
+*.key
+id_rsa
+id_ed25519
+id_ecdsa
+id_dsa
+*.p12
+*.keystore
+
+# Archivos de entorno con secrets
+.env
+.env.*
+*.env
+.envrc
+
+# AWS credentials
+.aws/credentials
+
+# ─── gitconfig generado (contiene identidad personal) ──────
+# El template (gitconfig.template) sí va al repo.
+# El gitconfig final lo genera setup-identity.sh con tu identidad.
+git/gitconfig
+
+# ─── Sistema / editor ──────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Editor swap/backup
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# ─── Logs y caches ─────────────────────────────────────────
+*.log
+.cache/
+node_modules/
+
+# ─── Backups del install.sh ────────────────────────────────
+*.backup.*

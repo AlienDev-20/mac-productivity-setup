@@ -1,0 +1,22 @@
+// ═══════════════════════════════════════════════════════════
+// agents.kdl — layout zellij con 4 paneles en columnas
+// ═══════════════════════════════════════════════════════════
+//
+// Uso: `agents` (función definida en ~/.zshrc)
+//
+// Workflow:
+//   1. Tipeás `agents` → zellij arranca con 4 panes verticales
+//   2. En cada pane, escribís `claude -c` para el agente que quieras
+//   3. Ctrl+o → d para detach (procesos siguen vivos)
+//   4. Tipeás `agents` de nuevo → re-attach a la misma sesión
+
+layout {
+    tab name="agents" {
+        pane split_direction="vertical" {
+            pane
+            pane
+            pane
+            pane
+        }
+    }
+}
