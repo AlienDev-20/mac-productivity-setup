@@ -40,3 +40,4 @@ brew "bash"               # macOS trae bash 3.2 ancestral; esta es 5.x
 cask "ghostty"                              # terminal GPU-accelerated
 cask "raycast"                              # launcher + productividad
 cask "font-jetbrains-mono-nerd-font"        # fuente con icons
+cask "cold-turkey-blocker"                  # bloqueo de apps/sitios (Pro, licencia por equipo)
