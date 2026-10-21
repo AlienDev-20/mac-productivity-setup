@@ -27,6 +27,7 @@ Rama: `feat/android-screen-to-obs`
 
 ## Evidencia
 
+- Work unit commit: `d290667` — `feat(obs): mirror Android into OBS via scrcpy helper`.
 - `scrcpy 5.0.1` instalado (deps: ffmpeg). Flags confirmados con `scrcpy --help`:
   `--window-title`, `-m/--max-size`, `--max-fps`, `-w/--stay-awake`, `-n/--no-control`,
   `-s/--serial`, `--no-audio`, `-S/--turn-screen-off`.
