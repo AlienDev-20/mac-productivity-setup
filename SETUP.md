@@ -148,7 +148,7 @@ brew bundle --file=~/dotfiles/Brewfile
 ```
 
 Esto instala:
-- **CLI tools**: bat, duf, dust, eza, fd, fzf, gh, git, neovim, ripgrep, sd, starship, zellij, zoxide, zsh-autosuggestions, zsh-syntax-highlighting, bash
+- **CLI tools**: bat, duf, dust, eza, fd, fzf, gh, git, neovim, ripgrep, sd, starship, zellij, zoxide, zsh-autosuggestions, zsh-syntax-highlighting, bash, scrcpy, android-platform-tools
 - **Apps GUI**: Ghostty, Raycast, JetBrains Mono Nerd Font
 
 Tarda 5-15 min según tu conexión.
@@ -190,6 +190,103 @@ agents
 ```
 
 Si todo eso funciona — **estás listo**. La base productiva está operativa.
+
+---
+
+## Extra — Compartir el celular Android en OBS
+
+Si transmitís, grabás o das una demo y necesitás mostrar el celu, el camino es
+`scrcpy` (espeja el Android en una ventana nativa) + **Window Capture** de OBS.
+Sin plugins propietarios y sin cables especiales.
+
+### 1. Instalar
+
+Ya viene en el `Brewfile`. Si querés hacerlo suelto:
+
+```bash
+brew install scrcpy
+brew install --cask android-platform-tools   # adb
+```
+
+### 2. Preparar el celular
+
+1. Ajustes → Información del teléfono → tocar **Número de compilación** 7 veces
+   (habilita Opciones de desarrollador)
+2. Ajustes → Sistema → Opciones de desarrollador → activar **Depuración USB**
+3. Conectar por USB, desbloquear la pantalla y aceptar el popup
+   *¿Permitir depuración USB?* (tildá "recordar")
+
+```bash
+adb devices
+# tiene que listar tu device con estado "device" (no "unauthorized")
+```
+
+### 3. Espejar
+
+```bash
+cd ~/dotfiles
+./share-android.sh
+```
+
+Abre una ventana titulada **Android OBS**. Flags que usa y por qué:
+
+| Flag | Para qué |
+|---|---|
+| `--window-title="Android OBS"` | Título fijo → la fuente de OBS queda bindeada por nombre, no por ID de ventana |
+| `--max-size=1080` | Suficiente para 1080p, menos CPU y menos bitrate |
+| `--max-fps=60` | Animaciones fluidas |
+| `--stay-awake` | Evita que el celu duerma y congele el espejo |
+| `--no-audio` | El audio del celu se maneja aparte (ver punto 5) |
+
+Variantes:
+
+```bash
+./share-android.sh --view-only                  # no inyecta mouse/teclado en el celu
+./share-android.sh --with-audio                 # audio del device (Android 11+)
+./share-android.sh --serial ABC123              # varios devices conectados
+./share-android.sh --wireless 192.168.0.42:5555 # sin cable
+```
+
+Inalámbrico (Android 11+): la primera vez por USB, después
+
+```bash
+adb pair <ip>:<puerto>   # puerto y código salen en Depuración inalámbrica
+./share-android.sh --wireless <ip>:5555
+```
+
+### 4. Capturarlo en OBS (una sola vez)
+
+1. **Permiso de macOS**: System Settings → Privacy & Security → **Screen Recording** →
+   tildá OBS. Sin esto el Window Capture sale **negro** y OBS no avisa por qué.
+   Después de tildarlo, cerrá OBS y abrilo de nuevo.
+2. En OBS: **Sources → + → Window Capture** — elegí el que dice
+   *macOS Screen Capture* (el legacy no captura ventanas ocluidas).
+3. En **Window** elegí **Android OBS**.
+4. Aspect ratio: el celu es ~9:19.5 y el canvas 16:9. Dejá la fuente con
+   `Ctrl+S` → **Fit to screen** y poné un fondo (Color Source o Image) debajo.
+   No uses Display Capture: te estira el celu o te deja bandas negras.
+
+### 5. Audio del celular (opcional)
+
+`scrcpy` manda el audio del device a la Mac. Para que suene en OBS:
+
+- Corré `./share-android.sh --with-audio`
+- En OBS agregá **Audio Output Capture** y elegí la salida donde suena el celu
+
+Alternativa sin forwarding: sacar el audio del celu por un cable al mixer que ya uses.
+
+### 6. El celu como cámara de reunión
+
+OBS → **Start Virtual Camera**, y en Meet/Zoom elegís "OBS Virtual Camera".
+
+### Troubleshooting del espejo
+
+- **`adb devices` muestra `unauthorized`** → desbloqueá el celu y aceptá el popup.
+  Si el popup no aparece: `adb kill-server && adb devices`.
+- **La ventana se ve negra en OBS** → falta el permiso de Screen Recording (punto 4.1).
+- **Se congela la imagen** → el celu se durmió o apagó la pantalla por ahorro de energía.
+- **Apps de video se ven negras** → bloqueo de contenido protegido (DRM). No es el setup.
+- **Va lento** → `MAX_SIZE=720 MAX_FPS=30 ./share-android.sh`.
 
 ---
 

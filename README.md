@@ -59,6 +59,7 @@ Si los 4 funcionan, **estás 100% listo**. Cualquier error → mirá [Troublesho
 - **[Ghostty](https://ghostty.org/)** — terminal GPU-accelerated, tema Catppuccin Mocha
 - **[Raycast](https://www.raycast.com/)** — launcher (reemplazo pro de Spotlight)
 - **JetBrains Mono Nerd Font** — fuente con icons para terminal
+- **[scrcpy](https://github.com/Genymobile/scrcpy)** — espejá tu Android en una ventana capturable por OBS
 
 ### CLI tools modernas
 | Herramienta | Reemplaza a | Por qué |
@@ -100,6 +101,7 @@ mac-productivity-setup/
 ├── install.sh                   # Crea symlinks
 ├── setup-identity.sh            # Genera tu gitconfig con tu nombre y email
 ├── Brewfile                     # Inventario de paquetes a instalar
+├── share-android.sh             # Espeja tu Android en una ventana para OBS
 ├── zsh/zshrc                    # Shell config
 ├── git/gitconfig.template       # Template (vos generás el real con setup-identity.sh)
 ├── ssh/config                   # SSH config (entry de GitHub)
@@ -135,6 +137,9 @@ agents           # abre 4 paneles en Zellij — un agent por pane
 # Mantenimiento
 brewup           # update + upgrade + cleanup de Homebrew
 brewdump         # actualiza Brewfile con tus paquetes actuales
+
+# Celular en OBS
+./share-android.sh             # espeja el Android en la ventana "Android OBS"
 
 # Git
 g st             # status corto
