@@ -40,6 +40,13 @@ brew bundle --file=Brewfile
 
 **Listo.** Tu Mac quedó con una base productiva profesional.
 
+¿Vas a trabajar con Claude Code y la lógica del equipo? Seguí con la [Fase 2](#-fase-2--claude-code--gentle-ai--herdr):
+
+```bash
+# 9. (En Ghostty) Claude Code + Gentle AI + herdr, todo de una
+cd ~/dotfiles && ./setup-claude.sh
+```
+
 ## ✅ Cómo verificar que todo funciona
 
 Después de abrir Ghostty fresh, probá esto:
@@ -52,6 +59,59 @@ agents                          # abre Zellij con 4 paneles para Claude Code
 ```
 
 Si los 4 funcionan, **estás 100% listo**. Cualquier error → mirá [Troubleshooting](#troubleshooting).
+
+Si corriste la Fase 2, sumá:
+
+```bash
+claude --version                # Claude Code instalado
+gentle-ai review mode status    # Gentle AI responde
+herdr --version                 # multiplexor de agentes
+```
+
+## 🤖 Fase 2 — Claude Code + Gentle AI + herdr
+
+La Fase 1 deja la Mac lista. La Fase 2 deja **Claude Code trabajando como trabaja el equipo**: misma persona, mismo flujo (ODD), misma memoria persistente, mismos permisos. Un solo comando, idempotente:
+
+```bash
+cd ~/dotfiles && ./setup-claude.sh
+```
+
+Pensado para cualquier rol del equipo, no solo devs. Una PO, por ejemplo, abre Ghostty, escribe `claude` y ya está hablando con el agente con nuestras reglas cargadas.
+
+### Qué instala
+
+| Pieza | Para qué |
+|---|---|
+| **[Claude Code](https://docs.claude.com/en/docs/claude-code)** | El agente en la terminal. Installer oficial, queda en `~/.local/bin` |
+| **[Gentle AI](https://github.com/Gentleman-Programming/gentle-ai)** | La lógica de trabajo del equipo: orquestador, ODD, skills, review nativo |
+| **Persona Gentleman** | Output style: respuestas cortas, en español, verifica antes de afirmar |
+| **Engram** | Memoria persistente entre sesiones (lo instala Gentle AI) |
+| **context7** | Documentación al día de librerías, vía MCP (lo instala Gentle AI) |
+| **[CodeGraph](https://www.npmjs.com/package/@colbymchenry/codegraph)** | Índice del código para que Claude entienda el proyecto sin leer todo |
+| **[herdr](https://herdr.dev)** | Multiplexor de agentes: varios Claude en paralelo, worktrees, notificaciones |
+| `claude/settings.team.json` | Idioma, estilo, archivos prohibidos (`.env`, llaves, keychain) y notificaciones de macOS cuando Claude termina |
+
+### Qué NO hace
+
+- No inicia sesión por vos: la primera vez que corrés `claude` te manda al navegador.
+- No borra nada de tu `~/.claude/settings.json`: el estilo y el idioma del equipo ganan, los permisos se unen a los tuyos y los hooks solo se agregan. Si algo cambia, deja un backup con timestamp al lado.
+- No toca tus proyectos. CodeGraph indexa cada repo la primera vez que Claude lo necesita.
+
+### Día a día
+
+```bash
+claude            # arranca Claude Code en el proyecto actual
+cc                # alias: retoma la última conversación (claude -c)
+herdr             # varios agentes en paralelo, cada uno en su pane
+gentle-ai         # TUI para ver/ajustar qué tiene instalado Gentle AI
+gentle-ai sync    # después de actualizar gentle-ai con brew
+```
+
+### Si algo falla
+
+- **`command not found: claude`** → abrí una terminal nueva. El installer deja el binario en `~/.local/bin`, que el `zshrc` ya agrega al PATH.
+- **Gentle AI pregunta cosas** → el script lo corre con `--preset full-gentleman --persona gentleman`, no debería. Si pasa, elegí las mismas opciones.
+- **Querés ver qué haría sin tocar nada** → `./setup-claude.sh --dry-run`.
 
 ## 📦 Qué incluye
 
@@ -100,7 +160,10 @@ mac-productivity-setup/
 ├── SETUP.md                     # Walkthrough super detallado con explicaciones
 ├── install.sh                   # Crea symlinks
 ├── setup-identity.sh            # Genera tu gitconfig con tu nombre y email
+├── setup-claude.sh              # Fase 2: Claude Code + Gentle AI + herdr
 ├── Brewfile                     # Inventario de paquetes a instalar
+├── Brewfile.claude              # Paquetes de la Fase 2 (node, gentle-ai, herdr)
+├── claude/settings.team.json    # Settings de Claude Code compartidos por el equipo
 ├── share-android.sh             # Espeja tu Android en una ventana para OBS
 ├── zsh/zshrc                    # Shell config
 ├── git/gitconfig.template       # Template (vos generás el real con setup-identity.sh)
@@ -130,7 +193,9 @@ Ctrl+R           # historial de comandos con fuzzy search
 Ctrl+T           # buscar archivos con fuzzy search
 
 # Multi-agent workflow (Claude Code)
-agents           # abre 4 paneles en Zellij — un agent por pane
+cc               # retoma la última conversación de Claude (claude -c)
+herdr            # multiplexor de agentes (Fase 2) — la opción recomendada
+agents           # alternativa con Zellij: 4 paneles, un agent por pane
                  # Ctrl+o → d para detach (procesos siguen vivos)
                  # `agents` de nuevo para re-attach
 

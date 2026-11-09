@@ -83,6 +83,10 @@ alias ....="cd ../../.."
 alias brewup="brew update && brew upgrade && brew cleanup"
 alias brewdump="brew bundle dump --file=$HOME/dotfiles/Brewfile --force"
 
+# Claude Code (Fase 2 — ./setup-claude.sh)
+# `cc` → retoma la última conversación en el directorio actual.
+alias cc="claude -c"
+
 # Zellij layouts — multi-agent workflows
 # `agents` → 4 panes en columnas para correr Claude Code agents en paralelo.
 # Si la sesión ya existe, hace attach; si no, la crea con el layout.

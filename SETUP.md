@@ -193,6 +193,37 @@ Si todo eso funciona — **estás listo**. La base productiva está operativa.
 
 ---
 
+## Paso 10 — Fase 2: Claude Code + Gentle AI + herdr (opcional)
+
+Si vas a trabajar con Claude Code siguiendo la lógica del equipo, hay un solo comando más:
+
+```bash
+cd ~/dotfiles && ./setup-claude.sh
+```
+
+**Por qué una fase aparte:** la Fase 1 es universal (cualquier persona con una Mac la quiere). La Fase 2 instala el *workflow del equipo*: Claude Code, Gentle AI con la persona Gentleman, Engram (memoria), CodeGraph (índice de código) y herdr (varios agentes a la vez). No todo el mundo lo necesita, y así el Brewfile base no se contamina.
+
+**Qué esperar:**
+
+1. Instala paquetes con Homebrew (`Brewfile.claude`): toma unos minutos la primera vez por Node.
+2. Baja Claude Code con su installer oficial. Queda en `~/.local/bin`, que el `zshrc` ya tiene en el PATH.
+3. Corre `gentle-ai install` sin preguntarte nada: ya va con el preset del equipo.
+4. Instala CodeGraph y lo conecta a Claude Code.
+5. Fusiona `claude/settings.team.json` en tu `~/.claude/settings.json`. Si ya tenías uno, deja un backup al lado.
+6. Verifica que cada herramienta responde.
+
+**Después, una sola vez:**
+
+```bash
+# Terminal nueva, dentro de cualquier carpeta de proyecto
+claude
+# Te manda al navegador para iniciar sesión. Listo, ya estás hablando con el agente.
+```
+
+Si querés ver qué haría antes de tocar nada: `./setup-claude.sh --dry-run`.
+
+---
+
 ## Extra — Compartir el celular Android en OBS
 
 Si transmitís, grabás o das una demo y necesitás mostrar el celu, el camino es

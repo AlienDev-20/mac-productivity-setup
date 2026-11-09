@@ -1,0 +1,17 @@
+# ════════════════════════════════════════════════════════════
+# Brewfile.claude — Fase 2: Claude Code + Gentle AI + herdr
+# ════════════════════════════════════════════════════════════
+# Se instala DESPUÉS del Brewfile base, vía ./setup-claude.sh.
+# Solo lo que hace falta para trabajar con agentes de IA con la
+# lógica del equipo. Claude Code en sí se instala con su propio
+# installer (no está en Homebrew), lo hace el script.
+
+tap "gentleman-programming/tap"
+
+# ─── Runtime ───────────────────────────────────────────────
+brew "node"               # Gentle AI, CodeGraph y context7 corren sobre Node
+brew "jq"                 # el script lo usa para fusionar settings.json
+
+# ─── Agentes ───────────────────────────────────────────────
+brew "gentleman-programming/tap/gentle-ai"   # workflow del equipo (ODD, skills, Engram, review)
+brew "herdr"                                 # multiplexor de agentes en la terminal
