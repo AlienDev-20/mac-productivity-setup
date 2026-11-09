@@ -119,7 +119,6 @@ gentle-ai sync    # después de actualizar gentle-ai con brew
 - **[Ghostty](https://ghostty.org/)** — terminal GPU-accelerated, tema Catppuccin Mocha
 - **[Raycast](https://www.raycast.com/)** — launcher (reemplazo pro de Spotlight)
 - **JetBrains Mono Nerd Font** — fuente con icons para terminal
-- **[scrcpy](https://github.com/Genymobile/scrcpy)** — espejá tu Android en una ventana capturable por OBS
 
 ### CLI tools modernas
 | Herramienta | Reemplaza a | Por qué |
@@ -163,8 +162,9 @@ mac-productivity-setup/
 ├── setup-claude.sh              # Fase 2: Claude Code + Gentle AI + herdr
 ├── Brewfile                     # Inventario de paquetes a instalar
 ├── Brewfile.claude              # Paquetes de la Fase 2 (node, gentle-ai, herdr)
+├── Brewfile.extras              # Opcional y personal: scrcpy (OBS) y Cold Turkey
 ├── claude/settings.team.json    # Settings de Claude Code compartidos por el equipo
-├── share-android.sh             # Espeja tu Android en una ventana para OBS
+├── share-android.sh             # Extra opcional: espeja tu Android en una ventana para OBS
 ├── zsh/zshrc                    # Shell config
 ├── git/gitconfig.template       # Template (vos generás el real con setup-identity.sh)
 ├── ssh/config                   # SSH config (entry de GitHub)
@@ -203,7 +203,7 @@ agents           # alternativa con Zellij: 4 paneles, un agent por pane
 brewup           # update + upgrade + cleanup de Homebrew
 brewdump         # actualiza Brewfile con tus paquetes actuales
 
-# Celular en OBS
+# Celular en OBS (solo si instalaste Brewfile.extras)
 ./share-android.sh             # espeja el Android en la ventana "Android OBS"
 
 # Git
@@ -227,6 +227,12 @@ alias deploy="./scripts/deploy.sh"
 ```bash
 brew install <paquete>
 brewdump   # actualiza el Brewfile automáticamente
+```
+
+### Extras personales (opcional)
+`Brewfile.extras` tiene lo que no es del equipo: `scrcpy` para espejar el celular en OBS y Cold Turkey para bloquear distracciones. Se instala aparte:
+```bash
+brew bundle --file=~/dotfiles/Brewfile.extras
 ```
 
 ### Scripts de Raycast

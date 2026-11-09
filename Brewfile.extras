@@ -1,0 +1,11 @@
+# ════════════════════════════════════════════════════════════
+# Brewfile.extras — herramientas personales, NO parte del setup del equipo
+# ════════════════════════════════════════════════════════════
+# Opcional. Instalalo solo si grabás contenido o querés bloqueo de foco:
+#   brew bundle --file=~/dotfiles/Brewfile.extras
+
+# ─── Celular en OBS ────────────────────────────────────────
+brew "scrcpy"             # espeja Android en una ventana capturable por OBS (ver share-android.sh)
+
+# ─── Foco ──────────────────────────────────────────────────
+cask "cold-turkey-blocker"                  # bloqueo de apps/sitios (Pro, licencia por equipo)

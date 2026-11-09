@@ -226,6 +226,8 @@ Si querés ver qué haría antes de tocar nada: `./setup-claude.sh --dry-run`.
 
 ## Extra — Compartir el celular Android en OBS
 
+> Opcional y personal. Nada de esto se instala con la Fase 1 ni la Fase 2: vive en `Brewfile.extras`.
+
 Si transmitís, grabás o das una demo y necesitás mostrar el celu, el camino es
 `scrcpy` (espeja el Android en una ventana nativa) + **Window Capture** de OBS.
 Sin plugins propietarios y sin cables especiales.
@@ -235,7 +237,7 @@ Sin plugins propietarios y sin cables especiales.
 Ya viene en el `Brewfile`. Si querés hacerlo suelto:
 
 ```bash
-brew install scrcpy
+brew bundle --file=~/dotfiles/Brewfile.extras   # instala scrcpy (y Cold Turkey)
 brew install --cask android-platform-tools   # adb
 ```
 
