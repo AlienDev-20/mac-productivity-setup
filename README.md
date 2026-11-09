@@ -41,6 +41,8 @@ brew bundle --file=Brewfile
 **Listo.** Tu Mac quedó con una base productiva profesional.
 
 > **¿Mac Intel?** Homebrew ya no se instala ahí. Saltá directo a **[SETUP-INTEL.md](./SETUP-INTEL.md)**: solo la Fase 2, a mano, sin Homebrew.
+>
+> **¿Windows?** Andá a **[SETUP-WINDOWS.md](./SETUP-WINDOWS.md)**: WSL2 con Ubuntu y la Fase 2 adentro.
 
 ¿Vas a trabajar con Claude Code y la lógica del equipo? Seguí con la [Fase 2](#-fase-2--claude-code--gentle-ai--herdr):
 
@@ -168,6 +170,7 @@ mac-productivity-setup/
 ├── claude/settings.team.json    # Settings de Claude Code compartidos por el equipo
 ├── claude/merge-settings.js     # Fusiona esos settings con los tuyos (lo usa SETUP-INTEL.md)
 ├── SETUP-INTEL.md               # Mac Intel sin Homebrew: solo la Fase 2, a mano
+├── SETUP-WINDOWS.md             # Windows: WSL2 + Ubuntu, solo la Fase 2, a mano
 ├── share-android.sh             # Extra opcional: espeja tu Android en una ventana para OBS
 ├── zsh/zshrc                    # Shell config
 ├── git/gitconfig.template       # Template (vos generás el real con setup-identity.sh)
