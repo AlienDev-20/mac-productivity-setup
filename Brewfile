@@ -5,7 +5,8 @@
 # tu workflow (lenguajes, frameworks, apps específicas).
 #
 # Después de instalar algo nuevo:
-#   brewdump   # alias en .zshrc → brew bundle dump --force
+#   brewdump   # vuelca tu inventario a Brewfile.local (no toca este archivo)
+#   y después copiás acá, a mano, solo lo que sea para todo el equipo
 
 # ─── Modern Unix replacements ──────────────────────────────
 brew "bat"                # cat con syntax highlighting

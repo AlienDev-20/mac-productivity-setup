@@ -81,7 +81,9 @@ alias ....="cd ../../.."
 
 # Brew
 alias brewup="brew update && brew upgrade && brew cleanup"
-alias brewdump="brew bundle dump --file=$HOME/dotfiles/Brewfile --force"
+# brewdump vuelca TU inventario completo a Brewfile.local (ignorado por git).
+# Los Brewfile del equipo (Brewfile, Brewfile.claude, Brewfile.extras) se editan a mano.
+alias brewdump="brew bundle dump --file=$HOME/dotfiles/Brewfile.local --force"
 
 # Claude Code (Fase 2 — ./setup-claude.sh)
 # `cc` → retoma la última conversación en el directorio actual.

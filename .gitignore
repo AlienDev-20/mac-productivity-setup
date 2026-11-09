@@ -46,5 +46,8 @@ Thumbs.db
 .cache/
 node_modules/
 
+# ─── Inventario personal de brew (lo genera brewdump) ──────
+Brewfile.local
+
 # ─── Backups del install.sh ────────────────────────────────
 *.backup.*

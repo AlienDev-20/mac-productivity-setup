@@ -346,7 +346,7 @@ Cuando necesites algo nuevo:
 
 ```bash
 brew install <paquete>
-brewdump   # actualiza tu Brewfile automáticamente
+brewdump   # vuelca tu inventario a Brewfile.local (ignorado por git); el Brewfile del equipo se edita a mano
 ```
 
 Después commiteá:

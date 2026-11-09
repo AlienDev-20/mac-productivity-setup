@@ -201,7 +201,7 @@ agents           # alternativa con Zellij: 4 paneles, un agent por pane
 
 # Mantenimiento
 brewup           # update + upgrade + cleanup de Homebrew
-brewdump         # actualiza Brewfile con tus paquetes actuales
+brewdump         # vuelca tus paquetes a Brewfile.local (ignorado por git)
 
 # Celular en OBS (solo si instalaste Brewfile.extras)
 ./share-android.sh             # espeja el Android en la ventana "Android OBS"
@@ -226,7 +226,8 @@ alias deploy="./scripts/deploy.sh"
 ### Más paquetes
 ```bash
 brew install <paquete>
-brewdump   # actualiza el Brewfile automáticamente
+brewdump   # vuelca tu inventario a Brewfile.local, ignorado por git
+# Si es para todo el equipo, agregalo a mano al Brewfile correspondiente
 ```
 
 ### Extras personales (opcional)
